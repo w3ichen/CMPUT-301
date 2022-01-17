@@ -1,0 +1,3 @@
+class Artist extends Employee {
+
+}
