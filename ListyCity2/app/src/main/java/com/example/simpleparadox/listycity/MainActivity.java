@@ -3,6 +3,8 @@ package com.example.simpleparadox.listycity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -40,16 +42,31 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.O
 
         cityList.setAdapter(cityAdapter);
 
+
         final FloatingActionButton addCityButton = findViewById(R.id.add_city_button);
         addCityButton.setOnClickListener((v) -> {
             new AddCityFragment().show(getSupportFragmentManager(), "ADD_CITY");
         });
 
+        // Allow editing on item click
+        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                City selectedCity = (City) cityList.getItemAtPosition(i);
+                AddCityFragment.newInstance(selectedCity, i).show(getSupportFragmentManager(), "EDIT_CITY");
+            }
+        });
     }
 
     @Override
-    public void onOkPressed(City newCity) {
+    public void onAddCity(City newCity) {
         cityAdapter.add(newCity);
+    }
+
+    @Override
+    public void onEditCity(City updatedCity, int index) {
+        cityDataList.set(index, updatedCity);
+        cityAdapter.notifyDataSetChanged();
     }
 
 }
