@@ -20,7 +20,7 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_gravity="bottom|end"
-        app:srcCopat="@android:drawable/ic_input_add"
+        app:srcCompat="@android:drawable/ic_input_add"
         />
 
 </FrameLayout>
