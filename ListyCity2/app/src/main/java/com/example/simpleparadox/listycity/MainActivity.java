@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.O
         cityDataList = new ArrayList<>();
 
         // Add all the data
-        for (int i=0; i<cities.length; i++){
+        for (int i = 0; i < cities.length; i++) {
             cityDataList.add(new City(cities[i], provinces[i]));
         }
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.O
     }
 
     @Override
-    public void onOkPressed(City newCity){
+    public void onOkPressed(City newCity) {
         cityAdapter.add(newCity);
     }
 
