@@ -1,28 +1,23 @@
 package com.example.rollcount;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONStringer;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements NewGameFragment.OnFragmentInteractionListener {
     private ListView gameList;
@@ -30,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
     private ArrayList<Game> gameDataList;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+    public static final String SELECTED_GAME = "com.example.rollcount.SELECTED_GAME";
 
 
     @Override
@@ -64,6 +60,16 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
             new NewGameFragment().show(getSupportFragmentManager(), "NEW_GAME");
         });
 
+        // (5) On game item click, open new SelectedGame activity
+        gameList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Game selectedGame = (Game) gameList.getItemAtPosition(i);
+                Intent intent = new Intent(MainActivity.this, SelectedGame.class);
+                intent.putExtra(SELECTED_GAME, selectedGame);
+                startActivity(intent); // Go to SelectedGame activity
+            }
+        });
     }
 
     @Override

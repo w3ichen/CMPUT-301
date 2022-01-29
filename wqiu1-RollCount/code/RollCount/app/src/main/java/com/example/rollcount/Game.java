@@ -1,14 +1,64 @@
 package com.example.rollcount;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Game {
+// Paercelable Credits: https://stackoverflow.com/a/2141166
+public class Game implements Parcelable {
     private String dateStarted; // date started (presented in yyyy-mm-dd format, editable and automatically filled)
     private String name; // name (textual, up to 40 characters)
     private Integer numRolls; // # rolls (N)
     private Integer numDiceSides; // # of dice sides (M)
+
+    protected Game(Parcel in) {
+        dateStarted = in.readString();
+        name = in.readString();
+        if (in.readByte() == 0) {
+            numRolls = null;
+        } else {
+            numRolls = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            numDiceSides = null;
+        } else {
+            numDiceSides = in.readInt();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(dateStarted);
+        dest.writeString(name);
+        if (numRolls == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(numRolls);
+        }
+        if (numDiceSides == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(numDiceSides);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Game> CREATOR = new Creator<Game>() {
+        @Override
+        public Game createFromParcel(Parcel in) {
+            return new Game(in);
+        }
+
+        @Override
+        public Game[] newArray(int size) {
+            return new Game[size];
+        }
+    };
 
     public String getDateStarted() {
         return dateStarted;
