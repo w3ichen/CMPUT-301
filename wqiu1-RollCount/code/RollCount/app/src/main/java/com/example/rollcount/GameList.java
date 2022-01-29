@@ -40,7 +40,7 @@ public class GameList extends ArrayAdapter<Game> {
 
         // Set the values of the TextViews
         game_name.setText(game.getName());
-        game_date.setText(game.getDateStarted().toString());
+        game_date.setText(game.getDateStarted());
         game_dice.setText(game.getNumRolls() + "d" + game.getNumDiceSides());
 
         return view;

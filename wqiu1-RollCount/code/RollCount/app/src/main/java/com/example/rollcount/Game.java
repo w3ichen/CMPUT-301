@@ -1,18 +1,20 @@
 package com.example.rollcount;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Game {
-    private Date dateStarted; // date started (presented in yyyy-mm-dd format, editable and automatically filled)
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private String dateStarted; // date started (presented in yyyy-mm-dd format, editable and automatically filled)
     private String name; // name (textual, up to 40 characters)
     private Integer numRolls; // # rolls (N)
     private Integer numDiceSides; // # of dice sides (M)
 
-    public Date getDateStarted() {
-        return dateStarted;
+    public String getDateStarted() {
+        return dateStarted.format(dateStarted);
     }
 
-    public void setDateStarted(Date dateStarted) {
+    public void setDateStarted(String dateStarted) {
         this.dateStarted = dateStarted;
     }
 
@@ -40,7 +42,7 @@ public class Game {
         this.numDiceSides = numDiceSides;
     }
 
-    public Game(Date dateStarted, String name, Integer numRolls, Integer numDiceSides) {
+    public Game(String dateStarted, String name, Integer numRolls, Integer numDiceSides) {
         this.dateStarted = dateStarted;
         this.name = name;
         this.numRolls = numRolls;

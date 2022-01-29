@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,14 +40,14 @@ public class NewGameFragment extends DialogFragment {
 
     private void enablePositiveBtn() {
         // Disable fragment dialog button if there is an error
-        if (TextUtils.isEmpty(gameDate.getError()) ||
-                TextUtils.isEmpty(gameName.getError()) ||
-                TextUtils.isEmpty(gameNumRolls.getError()) ||
+        if (TextUtils.isEmpty(gameDate.getError()) &&
+                TextUtils.isEmpty(gameName.getError()) &&
+                TextUtils.isEmpty(gameNumRolls.getError()) &&
                 TextUtils.isEmpty(gameNumDiceSides.getError())
         ) {
-            dialog.getButton(Dialog.BUTTON_POSITIVE).setEnabled(false); // disable
-        } else {
             dialog.getButton(Dialog.BUTTON_POSITIVE).setEnabled(true); // enable
+        } else {
+            dialog.getButton(Dialog.BUTTON_POSITIVE).setEnabled(false); // disable
         }
     }
 
@@ -89,10 +91,12 @@ public class NewGameFragment extends DialogFragment {
             public void afterTextChanged(Editable editable) {
                 try {
                     dateFormat.parse(gameDate.getText().toString());
+                    gameDate.setError(null);
                 } catch (ParseException e) {
                     gameDate.setError("Date must match the yyyy-MM-dd pattern");
+                } finally {
+                    enablePositiveBtn();
                 }
-                enablePositiveBtn();
             }
         });
         gameName.addTextChangedListener(new TextWatcher() {
@@ -110,6 +114,8 @@ public class NewGameFragment extends DialogFragment {
             public void afterTextChanged(Editable editable) {
                 if (gameName.getText().toString().length() < 1) {
                     gameName.setError("Name is required");
+                }else{
+                    gameName.setError(null);
                 }
                 enablePositiveBtn();
             }
@@ -133,22 +139,23 @@ public class NewGameFragment extends DialogFragment {
                         gameNumRolls.setError("# of rolls must be at least 1");
                     } else if (N > 3) {
                         gameNumRolls.setError("# of rolls must be no more than 3");
+                    }else{
+                        gameNumRolls.setError(null);
                     }
                 } catch (NumberFormatException e) {
                     gameNumRolls.setError("# of rolls is required");
+                } finally {
+                    enablePositiveBtn();
                 }
-                enablePositiveBtn();
             }
         });
         gameNumDiceSides.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -157,11 +164,15 @@ public class NewGameFragment extends DialogFragment {
                     Integer M = Integer.parseInt(gameNumDiceSides.getText().toString());
                     if (M < 1) {
                         gameNumDiceSides.setError("# of dice sides must be at least 1");
+                    }else{
+                        gameNumDiceSides.setError(null);
                     }
                 } catch (NumberFormatException e) {
                     gameNumDiceSides.setError("# of rolls is required");
+                } finally {
+                    enablePositiveBtn();
+
                 }
-                enablePositiveBtn();
             }
         });
 
@@ -174,12 +185,7 @@ public class NewGameFragment extends DialogFragment {
                 .setPositiveButton("Create", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Date dateStarted = null;
-                        try {
-                            dateStarted = dateFormat.parse(gameDate.getText().toString());
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
+                        String dateStarted = gameDate.getText().toString();
                         String name = gameName.getText().toString();
                         Integer numRolls = Integer.parseInt(gameNumRolls.getText().toString());
                         Integer numDiceSides = Integer.parseInt(gameNumDiceSides.getText().toString());
