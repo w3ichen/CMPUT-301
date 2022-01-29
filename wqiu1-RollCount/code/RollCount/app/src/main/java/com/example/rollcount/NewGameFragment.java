@@ -27,7 +27,7 @@ public class NewGameFragment extends DialogFragment {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private Date today = new Date();
     private AlertDialog dialog;
-    private TextView gameDate;
+    private static TextView gameDate;
     private EditText gameName;
     private EditText gameNumRolls;
     private EditText gameNumDiceSides;
@@ -188,6 +188,14 @@ public class NewGameFragment extends DialogFragment {
                     }
                 }).create();
         return dialog;
+    }
+
+    public static void setDateText(String dateStr) {
+        if (gameDate != null) gameDate.setText(dateStr);
+    }
+
+    public static String getDateText() {
+        return (gameDate == null) ? "" : (String) gameDate.getText().toString();
     }
 
     ;
