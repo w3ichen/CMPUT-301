@@ -3,11 +3,15 @@ package com.example.rollcount;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
+
 // Credits: https://developer.android.com/guide/topics/ui/controls/pickers#DatePickerFragment
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
@@ -26,6 +30,8 @@ public class DatePickerFragment extends DialogFragment
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the date chosen by the user
+        this.dismiss();
+        TextView gameDate = view.findViewById(R.id.edit_game_date);
+        gameDate.setText(year + "-" + month + "-" + day);
     }
 }
