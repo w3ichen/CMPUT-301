@@ -1,17 +1,17 @@
 package com.example.rollcount;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Game {
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private String dateStarted; // date started (presented in yyyy-mm-dd format, editable and automatically filled)
     private String name; // name (textual, up to 40 characters)
     private Integer numRolls; // # rolls (N)
     private Integer numDiceSides; // # of dice sides (M)
 
     public String getDateStarted() {
-        return dateStarted.format(dateStarted);
+        return dateStarted;
     }
 
     public void setDateStarted(String dateStarted) {
