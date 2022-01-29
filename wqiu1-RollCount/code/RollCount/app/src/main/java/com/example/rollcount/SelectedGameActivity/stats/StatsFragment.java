@@ -1,4 +1,4 @@
-package com.example.rollcount.ui.home;
+package com.example.rollcount.SelectedGameActivity.stats;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.rollcount.databinding.FragmentHomeBinding;
+import com.example.rollcount.databinding.StatsTabBinding;
 
-public class HomeFragment extends Fragment {
+public class StatsFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private StatsTabBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        StatsViewModel statsViewModel =
+                new ViewModelProvider(this).get(StatsViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = StatsTabBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textDashboard;
+        statsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
