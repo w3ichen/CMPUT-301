@@ -1,7 +1,10 @@
 package com.example.wqiu1_rollcount;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -128,5 +131,10 @@ public class Game implements Parcelable, Serializable {
         for (int i=numRolls;i<=numRolls * numDiceSides;i++){
             rollCounts.add(0); // initialize count with zeroes
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public Integer getTotalRolls(){
+        return (int) rollCounts.stream().mapToDouble(x->x).sum();
     }
 }

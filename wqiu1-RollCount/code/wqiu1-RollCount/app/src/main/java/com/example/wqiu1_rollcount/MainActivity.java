@@ -3,6 +3,7 @@ package com.example.wqiu1_rollcount;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
@@ -23,10 +26,10 @@ import java.util.ArrayList;
 /**
  * MainActivity
  * Purpose: the MainActivity is the first activity that the user sees when they open the app.
- *      When they first open the app, they will see a list of all the game sessions
+ * When they first open the app, they will see a list of all the game sessions
  * Design rationale: the list of game sessions is shown on app launch because the user must first select
- *      an existing game session or create a new one before using the other features of the app, that is
- *      counting rolls, seeing stats, and editing the game session.
+ * an existing game session or create a new one before using the other features of the app, that is
+ * counting rolls, seeing stats, and editing the game session.
  * Outstanding issues: None
  */
 public class MainActivity extends AppCompatActivity implements NewGameFragment.OnFragmentInteractionListener {
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
     public static final String SELECTED_GAME_INDEX = "com.example.rollcount.SELECTED_GAME_INDEX";
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +89,14 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
                 startActivity(intent); // Go to SelectedGame activity
             }
         });
+
+        // (6) Count and set total rolls
+        int totalRolls = 0;
+        for (Game aGame : gameDataList) {
+            totalRolls += aGame.getTotalRolls();
+        }
+        TextView totalRollsText = findViewById(R.id.total_rolls);
+        totalRollsText.setText(totalRolls + " total rolls");
     }
 
     @Override
@@ -94,20 +106,21 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
         save();
     }
 
-    public static void updateGame(Integer index, Game game){
+    public static void updateGame(Integer index, Game game) {
         gameDataList.set(index, game);
         gameAdapter.notifyDataSetChanged();
 
         save();
     }
 
-    public static void deleteGame(int index){
+    public static void deleteGame(int index) {
         gameDataList.remove(index); // remove game at the index
         gameAdapter.notifyDataSetChanged();
 
         save();
     }
-    private static void save(){
+
+    private static void save() {
         // Save updated list to Android preferences
         Gson gson = new Gson();
         String json = gson.toJson(gameDataList);

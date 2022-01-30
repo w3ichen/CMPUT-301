@@ -30,6 +30,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_game_btn">
 
+        <TextView
+            android:id="@+id/total_rolls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 total rolls"
+            android:textAlignment="textEnd" />
+
         <ListView
             android:id="@+id/game_list"
             android:layout_width="match_parent"

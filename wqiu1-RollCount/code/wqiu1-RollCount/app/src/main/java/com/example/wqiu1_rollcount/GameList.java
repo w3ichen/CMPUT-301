@@ -1,6 +1,7 @@
 package com.example.wqiu1_rollcount;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 
@@ -33,6 +35,7 @@ public class GameList extends ArrayAdapter<Game> {
         this.context = context;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -44,14 +47,17 @@ public class GameList extends ArrayAdapter<Game> {
         Game game = games.get(position);
 
         // Get the TextViews from the xml file
-        TextView game_name = view.findViewById(R.id.game_name);
-        TextView game_date = view.findViewById(R.id.game_date);
-        TextView game_dice = view.findViewById(R.id.game_dice);
+        TextView gameName = view.findViewById(R.id.game_name);
+        TextView gameDate = view.findViewById(R.id.game_date);
+        TextView gameDice = view.findViewById(R.id.game_dice);
+        TextView gameTotalRolls = view.findViewById(R.id.game_total_rolls);
+
 
         // Set the values of the TextViews
-        game_name.setText(game.getName());
-        game_date.setText(game.getDateStarted());
-        game_dice.setText(game.getNumRolls() + "d" + game.getNumDiceSides());
+        gameName.setText(game.getName());
+        gameDate.setText(game.getDateStarted());
+        gameDice.setText(game.getNumRolls() + "d" + game.getNumDiceSides());
+        gameTotalRolls.setText(game.getTotalRolls() + " rolls");
 
         return view;
     }
