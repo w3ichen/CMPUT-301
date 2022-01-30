@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,16 +17,20 @@ import androidx.fragment.app.DialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements NewGameFragment.OnFragmentInteractionListener {
     private ListView gameList;
-    private  ArrayAdapter<Game> gameAdapter;
-    private ArrayList<Game> gameDataList;
-    private SharedPreferences sharedPref;
-    private SharedPreferences.Editor editor;
+    private static ArrayAdapter<Game> gameAdapter;
+    private static ArrayList<Game> gameDataList;
+    private static SharedPreferences sharedPref;
+    private static SharedPreferences.Editor editor;
     public static final String SELECTED_GAME = "com.example.rollcount.SELECTED_GAME";
+    public static final String SELECTED_GAME_ROLL_COUNTS = "com.example.rollcount.SELECTED_GAME_ROLL_COUNTS";
+    public static final String SELECTED_GAME_INDEX = "com.example.rollcount.SELECTED_GAME_INDEX";
 
 
     @Override
@@ -42,11 +47,12 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
         editor = sharedPref.edit();
         // Parse and use the saved values if it exists
         Gson gson = new Gson();
-        String json = sharedPref.getString("saved_game_list",null);
-        Type type = new TypeToken<ArrayList<Game>>() {}.getType();
-        if (json == null){
+        String json = sharedPref.getString("saved_game_list", null);
+        Type type = new TypeToken<ArrayList<Game>>() {
+        }.getType();
+        if (json == null) {
             gameDataList = new ArrayList<Game>();
-        }else{
+        } else {
             gameDataList = gson.fromJson(json, type);
         }
 
@@ -66,7 +72,9 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Game selectedGame = (Game) gameList.getItemAtPosition(i);
                 Intent intent = new Intent(MainActivity.this, SelectedGame.class);
-                intent.putExtra(SELECTED_GAME, selectedGame);
+                intent.putExtra(SELECTED_GAME, (Parcelable) selectedGame);
+                intent.putExtra(SELECTED_GAME_ROLL_COUNTS, (Serializable) selectedGame.getRollCounts());
+                intent.putExtra(SELECTED_GAME_INDEX, i);
                 startActivity(intent); // Go to SelectedGame activity
             }
         });
@@ -77,6 +85,17 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
         gameAdapter.insert(game, 0);
         // Credits: https://stackoverflow.com/a/56682835
         // Save new list to Android preferences
+        Gson gson = new Gson();
+        String json = gson.toJson(gameDataList);
+        editor.putString("saved_game_list", json);
+        editor.apply();
+    }
+
+    public static void updateGame(Integer index, Game game){
+        gameDataList.set(index, game);
+        gameAdapter.notifyDataSetChanged();
+
+        // Save updated list to Android preferences
         Gson gson = new Gson();
         String json = gson.toJson(gameDataList);
         editor.putString("saved_game_list", json);

@@ -3,12 +3,19 @@ package com.example.rollcount;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 // Paercelable Credits: https://stackoverflow.com/a/2141166
-public class Game implements Parcelable {
+public class Game implements Parcelable, Serializable {
     private String dateStarted; // date started (presented in yyyy-mm-dd format, editable and automatically filled)
     private String name; // name (textual, up to 40 characters)
     private Integer numRolls; // # rolls (N)
     private Integer numDiceSides; // # of dice sides (M)
+    private ArrayList<Integer> rollCounts;
+
 
     protected Game(Parcel in) {
         dateStarted = in.readString();
@@ -92,10 +99,28 @@ public class Game implements Parcelable {
         this.numDiceSides = numDiceSides;
     }
 
+    public ArrayList<Integer> getRollCounts() {
+        return rollCounts;
+    }
+
+    public void setRollCounts(ArrayList<Integer> rollCounts) {
+        this.rollCounts = rollCounts;
+    }
+
+
+    public Integer getRollNumFromPosition(Integer position){
+        return numRolls + position;
+    }
+
     public Game(String dateStarted, String name, Integer numRolls, Integer numDiceSides) {
         this.dateStarted = dateStarted;
         this.name = name;
         this.numRolls = numRolls;
         this.numDiceSides = numDiceSides;
+        // Assign all possible rolls to 0
+        rollCounts = new ArrayList<>();
+        for (int i=numRolls;i<=numRolls * numDiceSides;i++){
+            rollCounts.add(0); // initialize count with zeroes
+        }
     }
 }
