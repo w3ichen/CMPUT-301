@@ -33,6 +33,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.OptionalDouble;
 
+/**
+ * StatsFragment
+ * Purpose: renders the view of the "Stats" tab which contains stats (average, min, max) and histogram
+ *      of the roll counts
+ * Design rationale: this was split off as its own class so each tab can be designed separately
+ *      The stats are shown on top to make it easier to read and histogram is underneath.
+ *      The histogram is using the MPAndroidChart's HorizontalBarChart
+ * Outstanding issues: None
+ */
 public class StatsFragment extends Fragment {
     private Intent intent;
     private Game game;

@@ -23,7 +23,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * NewGameFragment
+ * Purpose: when the user clicks on the "New Game" button, the NewGameFragment opens up as a dialog pop-up.
+ *      It will prompt the user for the game session's date, name, number of rolls, and number of dice sides.
+ * Design rationale: a pop-up was used because we only want to see this form when the user wants to create
+ *      a new game session, so in the interest of saving space in the app and not showing this form when not
+ *      needed, a pop-up was used. All the values in the form are pre-filled with common values to make it
+ *      easier on the user to create a game session. Error validation is also put in place to ensure accurate date,
+ *      and the "Create" button is disabled when there are errors to prevent submitting and saving bad data
+ * Outstanding issues: None
+ */
 public class NewGameFragment extends DialogFragment {
     private OnFragmentInteractionListener listener;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

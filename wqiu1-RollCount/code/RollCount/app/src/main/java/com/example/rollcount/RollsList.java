@@ -13,6 +13,16 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+/**
+ * RollsList
+ * Purpose: RollsList is an ArrayAdapter that transforms an ArrayList of Roll into a ListView
+ * Design rationale: each row in the ListView represents one roll. Where each row has the row name (eg. Row 1),
+ *      the row count (ie. number of time the roll was encountered), and the two buttons (+ and -).
+ *      These are used to add a roll and undo a roll. It is very intuitive to the user when they can
+ *      increase and decrease the displayed count by clicking the "+" and "-" respectively.
+ *      The "-" will not work when the count is already at 0 to prevent counts going into the negatives.
+ * Outstanding issues: None
+ */
 public class RollsList extends ArrayAdapter<Roll> {
     private ArrayList<Roll> rolls;
     private Context context;

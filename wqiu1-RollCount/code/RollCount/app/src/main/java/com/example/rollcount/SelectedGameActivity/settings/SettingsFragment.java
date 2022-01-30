@@ -34,6 +34,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * SettingsFragment
+ * Purpose: renders the view of the "Settings" tab which contains the ability to view the
+ *      game session attributes, edit these attributes, and delete the game session
+ * Design rationale: this was split off as its own class so each tab can be designed separately.
+ *      The ability to edit and delete the game session was grouped together because it made logical
+ *      sense since both actions modify the game session in some way.
+ *      The game session attributes are displayed with the ability to edit it so that view/edit game
+ *      attributes can be accomplished at the same time (saving code and space in the app)
+ * Outstanding issues: None
+ */
 public class SettingsFragment extends Fragment {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private SettingsTabBinding binding;

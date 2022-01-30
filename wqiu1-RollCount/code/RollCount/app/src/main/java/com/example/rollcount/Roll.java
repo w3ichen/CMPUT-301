@@ -4,6 +4,14 @@ import static com.example.rollcount.MainActivity.updateGame;
 
 import java.util.ArrayList;
 
+/**
+ * Roll
+ * Purpose: represents a roll which has the rollNum (ie. the number on the dice) and the count (ie.
+ *      how many times the rollNum occurred).
+ * Design rationale: a class was made to represent a roll to make it easier to initialize rolls in
+ *      the RollsList, as well as providing common roll functions such as `increaseCount` and `decreaseCount`
+ * Outstanding issues: None
+ */
 public class Roll {
     private Integer rollNum;
     private Integer count;

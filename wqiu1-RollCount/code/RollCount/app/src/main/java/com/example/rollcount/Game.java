@@ -8,6 +8,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+/**
+ * Game
+ * Purpose: the Game class models a Game session. It contains all of the attributes and getter/setter
+ *      functions. It also initializes the attributes in the constructor. Notably, the `rollCounts` array
+ *      is initialized with 0's and with a size according to `numRolls` and `numDiceSides`.
+ * Design rationale: Game models Game session
+ * Outstanding issues: None
+ */
 // Paercelable Credits: https://stackoverflow.com/a/2141166
 public class Game implements Parcelable, Serializable {
     private String dateStarted; // date started (presented in yyyy-mm-dd format, editable and automatically filled)

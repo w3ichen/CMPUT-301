@@ -12,6 +12,16 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+/**
+ * GameList
+ * Purpose: the GameList is an ArrayAdapter that transforms the ArrayList of Game objects into the
+ *      ListView which is displayed to the user
+ * Design rationale: each of the Game items in the list displays its name, date, and dice which
+ *      are the three most important attributes of each game session.
+ *      The name of the game session is the largest and in bold because it is the identifier of each
+ *      game session and helps the user to easily identify each session when it is larger.
+ * Outstanding issues: None
+ */
 public class GameList extends ArrayAdapter<Game> {
 
     private ArrayList<Game> games;

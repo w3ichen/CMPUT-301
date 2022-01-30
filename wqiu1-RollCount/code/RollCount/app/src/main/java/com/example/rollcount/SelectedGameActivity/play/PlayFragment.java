@@ -29,6 +29,15 @@ import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Map;
 
+/**
+ * PlayFragment
+ * Purpose: renders the view of the "Play" tab which contains the list of rolls
+ *      that can be incremented and decremented by the user.
+ *      A list was used to easily display all the rolls and the count was displayed on each row.
+ *      A + and - button was used to count rows because it is universally recognized and easy to use.
+ * Design rationale: this was split off as its own class so each tab can be designed separately
+ * Outstanding issues: None
+ */
 public class PlayFragment extends Fragment {
     private ArrayList<Roll> rollsDataList;
     private ListView rollsList;

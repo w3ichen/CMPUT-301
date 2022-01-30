@@ -23,6 +23,15 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * MainActivity
+ * Purpose: the MainActivity is the first activity that the user sees when they open the app.
+ *      When they first open the app, they will see a list of all the game sessions
+ * Design rationale: the list of game sessions is shown on app launch because the user must first select
+ *      an existing game session or create a new one before using the other features of the app, that is
+ *      counting rolls, seeing stats, and editing the game session.
+ * Outstanding issues: None
+ */
 public class MainActivity extends AppCompatActivity implements NewGameFragment.OnFragmentInteractionListener {
     private ListView gameList;
     private static ArrayAdapter<Game> gameAdapter;
