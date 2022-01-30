@@ -1,4 +1,4 @@
-package com.example.wqiu1_rollcount.SelectedGameActivity.stats;
+package com.example.wqiu1_rollcount;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,9 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.example.wqiu1_rollcount.Game;
-import com.example.wqiu1_rollcount.MainActivity;
-import com.example.wqiu1_rollcount.R;
 import com.example.wqiu1_rollcount.databinding.StatsTabBinding;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;

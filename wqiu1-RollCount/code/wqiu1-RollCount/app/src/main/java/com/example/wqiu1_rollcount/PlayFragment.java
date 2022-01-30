@@ -1,4 +1,4 @@
-package com.example.wqiu1_rollcount.SelectedGameActivity.play;
+package com.example.wqiu1_rollcount;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,11 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.example.wqiu1_rollcount.Game;
-import com.example.wqiu1_rollcount.MainActivity;
-import com.example.wqiu1_rollcount.R;
-import com.example.wqiu1_rollcount.Roll;
-import com.example.wqiu1_rollcount.RollsList;
+
 import com.example.wqiu1_rollcount.databinding.PlayTabBinding;
 
 import java.util.ArrayList;

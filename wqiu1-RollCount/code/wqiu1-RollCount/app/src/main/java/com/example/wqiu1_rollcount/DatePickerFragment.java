@@ -1,7 +1,7 @@
 package com.example.wqiu1_rollcount;
 
 import static com.example.wqiu1_rollcount.NewGameFragment.setNewDateText;
-import static com.example.wqiu1_rollcount.SelectedGameActivity.settings.SettingsFragment.setOldDateText;
+import static com.example.wqiu1_rollcount.SettingsFragment.setOldDateText;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

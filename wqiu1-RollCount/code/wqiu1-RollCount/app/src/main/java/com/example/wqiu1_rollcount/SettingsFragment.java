@@ -1,4 +1,4 @@
-package com.example.wqiu1_rollcount.SelectedGameActivity.settings;
+package com.example.wqiu1_rollcount;
 
 import static com.example.wqiu1_rollcount.MainActivity.deleteGame;
 import static com.example.wqiu1_rollcount.MainActivity.updateGame;
@@ -19,10 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import com.example.wqiu1_rollcount.DatePickerFragment;
-import com.example.wqiu1_rollcount.Game;
-import com.example.wqiu1_rollcount.MainActivity;
-import com.example.wqiu1_rollcount.R;
+
 import com.example.wqiu1_rollcount.databinding.SettingsTabBinding;
 
 import java.text.ParseException;

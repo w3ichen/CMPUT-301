@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_play"
-        android:name="com.example.wqiu1_rollcount.SelectedGameActivity.play.PlayFragment"
+        android:name="com.example.wqiu1_rollcount.PlayFragment"
         android:label="@string/title_play"
         tools:layout="@layout/play_tab" />
 
     <fragment
         android:id="@+id/navigation_stats"
-        android:name="com.example.wqiu1_rollcount.SelectedGameActivity.stats.StatsFragment"
+        android:name="com.example.wqiu1_rollcount.StatsFragment"
         android:label="@string/title_stats"
         tools:layout="@layout/stats_tab" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.example.wqiu1_rollcount.SelectedGameActivity.settings.SettingsFragment"
+        android:name="com.example.wqiu1_rollcount.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/settings_tab"  />
 </navigation>
