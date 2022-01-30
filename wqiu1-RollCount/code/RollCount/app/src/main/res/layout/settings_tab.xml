@@ -6,24 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".SelectedGameActivity.settings.SettingsFragment">
 
-<!--    <fragment-->
-<!--        android:id="@+id/edit_game_fragment"-->
-<!--        android:name="com.example.rollcount.NewGameFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <TextView
+        android:id="@+id/edit_game_date"
+        android:layout_width="210dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:onClick="showDatePickerDialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Game session name"
+        android:inputType="textPersonName"
+        android:maxLength="40"
+        android:text="Today's game"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_game_date" />
+
+    <EditText
+        android:id="@+id/edit_num_rolls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_game_name" />
+
+    <EditText
+        android:id="@+id/edit_num_dice_sides"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_num_rolls" />
+
+    <TextView
+        android:id="@+id/view_game_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Date started"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_game_date"
+        app:layout_constraintEnd_toStartOf="@+id/edit_game_date"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/view_game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_game_name"
+        app:layout_constraintEnd_toStartOf="@+id/edit_game_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/view_num_rolls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="# rolls (N)"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_num_rolls"
+        app:layout_constraintEnd_toStartOf="@+id/edit_num_rolls"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/view_num_dice_sides"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="# of dice sides (M)"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_num_dice_sides"
+        app:layout_constraintEnd_toStartOf="@+id/edit_num_dice_sides"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/delete_game_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#E91E63"
         android:text="Delete Game"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/save_changes_btn" />
 
@@ -31,11 +115,12 @@
         android:id="@+id/save_changes_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         android:text="Save changes"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_game_fragment" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_num_dice_sides" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,6 +37,9 @@ public class NewGameFragment extends DialogFragment {
     public interface OnFragmentInteractionListener {
         void onAddGame(Game game);
     }
+    public void setDate(String newDate){
+        gameDate.setText(newDate);
+    }
 
     private void enablePositiveBtn() {
         // Disable fragment dialog button if there is an error
@@ -74,6 +77,17 @@ public class NewGameFragment extends DialogFragment {
 
         // (2) Populate views
         gameDate.setText(dateFormat.format(today));
+        // Set onclick for date
+        gameDate.setOnClickListener((v)->{
+            DialogFragment newFragment = new DatePickerFragment();
+            // Pass in the current date
+            Bundle args = new Bundle();
+            args.putString("currentDate", gameDate.getText().toString());
+            args.putString("type", "NEW_GAME");
+            newFragment.setArguments(args);
+
+            newFragment.show(getActivity().getSupportFragmentManager(), "DATE_PICKER");
+        });
 
         // (3) Add validation to text fields
         gameDate.addTextChangedListener(new TextWatcher() {
@@ -195,14 +209,9 @@ public class NewGameFragment extends DialogFragment {
                 }).create();
         return dialog;
     }
-
-    public static void setDateText(String dateStr) {
+    public static void setNewDateText(String dateStr) {
         if (gameDate != null) gameDate.setText(dateStr);
     }
 
-    public static String getDateText() {
-        return (gameDate == null) ? "" : (String) gameDate.getText().toString();
-    }
 
-    ;
 }
