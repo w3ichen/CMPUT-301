@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/activity_main.xml" value="0.2394678492239468" />
-        <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/activity_selected_game.xml" value="0.12693935119887165" />
+        <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/activity_selected_game.xml" value="0.176" />
         <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/fragment_dashboard.xml" value="0.1381340579710145" />
         <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/fragment_home.xml" value="0.1381340579710145" />
         <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/game_item.xml" value="0.264" />
@@ -12,7 +12,7 @@
         <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/play_roll_item.xml" value="0.72" />
         <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/play_tab.xml" value="0.152" />
         <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/settings_tab.xml" value="0.29411764705882354" />
-        <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/stats_tab.xml" value="0.536" />
+        <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/layout/stats_tab.xml" value="0.4" />
         <entry key="..\:/Github/CMPUT-301/wqiu1-RollCount/code/RollCount/app/src/main/res/menu/bottom_nav_menu.xml" value="0.176" />
       </map>
     </option>

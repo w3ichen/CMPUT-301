@@ -33,7 +33,11 @@ public class SelectedGame extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_play, R.id.navigation_stats, R.id.navigation_settings).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_selected_game);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        // Change navbar title to game name
+        Intent intent = getIntent();
+        Game game = intent.getParcelableExtra(MainActivity.SELECTED_GAME);
+        setTitle(game.getName() + "  (" + game.getDateStarted() + ")");
     }
 }
