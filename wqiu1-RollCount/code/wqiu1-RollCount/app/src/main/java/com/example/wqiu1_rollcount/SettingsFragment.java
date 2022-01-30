@@ -41,7 +41,7 @@ import java.util.Date;
 public class SettingsFragment extends Fragment {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private SettingsTabBinding binding;
-private static TextView gameDate;
+    private static TextView gameDate;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

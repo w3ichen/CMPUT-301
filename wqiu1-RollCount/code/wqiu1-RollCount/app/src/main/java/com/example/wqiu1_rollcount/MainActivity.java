@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
     private ListView gameList;
     private static ArrayAdapter<Game> gameAdapter;
     private static ArrayList<Game> gameDataList;
+    private static TextView totalRollsText;
     private static SharedPreferences sharedPref;
     private static SharedPreferences.Editor editor;
     public static final String SELECTED_GAME = "com.example.rollcount.SELECTED_GAME";
@@ -91,11 +92,11 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
         });
 
         // (6) Count and set total rolls
+        totalRollsText = findViewById(R.id.total_rolls);
         int totalRolls = 0;
         for (Game aGame : gameDataList) {
             totalRolls += aGame.getTotalRolls();
         }
-        TextView totalRollsText = findViewById(R.id.total_rolls);
         totalRollsText.setText(totalRolls + " total rolls");
     }
 
@@ -120,12 +121,20 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
         save();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private static void save() {
         // Save updated list to Android preferences
         Gson gson = new Gson();
         String json = gson.toJson(gameDataList);
         editor.putString("saved_game_list", json);
         editor.apply();
+
+        // Re-count the total rolls
+        int totalRolls = 0;
+        for (Game aGame : gameDataList) {
+            totalRolls += aGame.getTotalRolls();
+        }
+        totalRollsText.setText(totalRolls + " total rolls");
     }
 
 }
