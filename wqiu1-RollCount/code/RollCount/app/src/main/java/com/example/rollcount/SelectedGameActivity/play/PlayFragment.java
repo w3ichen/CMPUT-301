@@ -52,7 +52,7 @@ public class PlayFragment extends Fragment {
 
         // Generate list of rolls
         rollsDataList = new ArrayList<>();
-        for (int i=0; i<rollCounts.size();i++) {
+        for (int i = 0; i < rollCounts.size(); i++) {
             rollsDataList.add(new Roll(game.getRollNumFromPosition(i), rollCounts.get(i)));
         }
         rollsAdapter = new RollsList(root.getContext(), rollsDataList, game, gameIndex, rollCounts);

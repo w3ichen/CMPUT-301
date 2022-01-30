@@ -84,17 +84,23 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
     public void onAddGame(Game game) {
         gameAdapter.insert(game, 0);
         // Credits: https://stackoverflow.com/a/56682835
-        // Save new list to Android preferences
-        Gson gson = new Gson();
-        String json = gson.toJson(gameDataList);
-        editor.putString("saved_game_list", json);
-        editor.apply();
+        save();
     }
 
     public static void updateGame(Integer index, Game game){
         gameDataList.set(index, game);
         gameAdapter.notifyDataSetChanged();
 
+        save();
+    }
+
+    public static void deleteGame(int index){
+        gameDataList.remove(index); // remove game at the index
+        gameAdapter.notifyDataSetChanged();
+
+        save();
+    }
+    private static void save(){
         // Save updated list to Android preferences
         Gson gson = new Gson();
         String json = gson.toJson(gameDataList);

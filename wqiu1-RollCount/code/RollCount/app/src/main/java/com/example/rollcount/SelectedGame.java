@@ -1,7 +1,10 @@
 package com.example.rollcount;
 
+import static com.example.rollcount.MainActivity.deleteGame;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,7 +19,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.rollcount.databinding.ActivitySelectedGameBinding;
 
 public class SelectedGame extends AppCompatActivity {
-
+    private Intent intent;
+    private Game game;
     private ActivitySelectedGameBinding binding;
 
     @Override
@@ -36,8 +40,8 @@ public class SelectedGame extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         // Change navbar title to game name
-        Intent intent = getIntent();
-        Game game = intent.getParcelableExtra(MainActivity.SELECTED_GAME);
+        intent = getIntent();
+        game = intent.getParcelableExtra(MainActivity.SELECTED_GAME);
         setTitle(game.getName() + "  (" + game.getDateStarted() + ")");
     }
 }
