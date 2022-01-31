@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
         totalRollsText.setText(totalRolls + " total rolls");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onAddGame(Game game) {
         gameAdapter.insert(game, 0);
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
         save();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static void updateGame(Integer index, Game game) {
         gameDataList.set(index, game);
         gameAdapter.notifyDataSetChanged();
@@ -114,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements NewGameFragment.O
         save();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static void deleteGame(int index) {
         gameDataList.remove(index); // remove game at the index
         gameAdapter.notifyDataSetChanged();
