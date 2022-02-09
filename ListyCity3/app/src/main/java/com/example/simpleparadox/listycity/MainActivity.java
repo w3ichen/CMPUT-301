@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
     // Declare the variables so that you will be able to reference it later.
     ListView cityList;
     ArrayAdapter<City> cityAdapter;
-    ArrayList<City> cityDataList;
+    static ArrayList<City> cityDataList;
     final String TAG = "Sample";
     Button addCityButton;
     EditText addCityEditText;
     EditText addProvinceEditText;
     FirebaseFirestore db;
-    CustomList customList;
+    static CollectionReference collectionReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
         // Get a top level reference to the collection
-        final CollectionReference collectionReference = db.collection("Cities");
+        collectionReference = db.collection("Cities");
 
         addCityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,5 +123,10 @@ public class MainActivity extends AppCompatActivity {
                 cityAdapter.notifyDataSetChanged(); // Notifying the adapter to render any new data fetched from the cloud
             }
         });
+    }
+
+    public static void deleteCity(int position){
+        City cityToDelete = cityDataList.get(position);
+        collectionReference.document(cityToDelete.getCityName()).delete();
     }
 }
