@@ -28,6 +28,7 @@ public class CityList {
     /**
      * This returns a sorted list of cities
      * @return
+     *      Return the sorted list of cities
      */
     public List<City> getCities(){
         List<City> list = cities;
