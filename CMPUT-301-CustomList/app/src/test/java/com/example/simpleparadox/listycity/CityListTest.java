@@ -51,4 +51,47 @@ public class CityListTest {
         assertEquals(0, city.compareTo(cityList.getCities().get(0)));
         assertEquals(0, mockCity().compareTo(cityList.getCities().get(1)));
     }
+
+    /**
+     * Test to see whether your method is correct
+     */
+   @Test
+    void testHasCity(){
+       CityList cityList = mockCityList();
+       // Should contain the mock city
+       assertTrue(cityList.hasCity(mockCity()));
+
+       // Should not contain this random city
+       City city = new City("Toronto","Ontario");
+       assertFalse(cityList.hasCity(city));
+   }
+
+    /**
+     * Test to see if your method actually removes it from the list
+     * Test to see if the exception is actually thrown
+     */
+    @Test
+    void testDelete(){
+        CityList cityList = mockCityList();
+
+        // If city does not already exist, throw an exception
+        assertThrows(IllegalArgumentException.class, ()->{
+            City city = new City("Yellowknife","NWT");
+            cityList.delete(city);
+        });
+
+        cityList.delete(mockCity());
+        assertFalse(cityList.hasCity(mockCity()));
+        assertEquals(0, cityList.getCities().size());
+    }
+
+    /**
+     * Test to see whether your method is correct
+     */
+    @Test
+    void testCountCities(){
+        CityList cityList = mockCityList();
+
+        assertEquals(1, cityList.countCities());
+    }
 }
