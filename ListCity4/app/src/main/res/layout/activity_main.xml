@@ -22,7 +22,7 @@
             android:id="@+id/button_clear"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="ClEAR ALL" />
+            android:text="CLEAR ALL" />
     </LinearLayout>
 
     <ListView
